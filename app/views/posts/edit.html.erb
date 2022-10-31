@@ -1,8 +1,9 @@
 <div style="margin-top: 10vh">
   <% if @post.errors.any? %>
-    <ul>
+    <ul style="list-style-type: none;">
+      <b>*Error: Please see below for more info* </b>
       <% @post.errors.full_messages.each do |msg| %>
-        <li> <%= msg %></li>
+        <li style="color:red"> <%= msg %></li>
       <% end %>
     </ul>
   <% end %>

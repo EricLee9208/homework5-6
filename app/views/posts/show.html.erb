@@ -1,6 +1,6 @@
-<h1 class="p-3" style="margin-top:8vh;"> <%=@post.title%></h1>
+<h1 class="p-3" style="margin-top:10vh;"> <%=@post.title%></h1>
 <p class = "p-3"><%=@post.body%></p>
-<small class="p-3">Created <%= time_ago_in_words(@post.created_at)%> ago</small>
+<small class="p-3" style="font-size:12.5px">Created <%= time_ago_in_words(@post.created_at)%> ago</small>
 <div class="d-flex p-3">
   <%= button_to 'Edit', edit_post_path(@post), method: :get, class: "btn btn-outline-primary", style: "margin-right:5px;" %>
   <%= button_to 'Delete', post_path(@post), method: :delete, class: "btn btn-outline-primary", form: {data: {turbo_confirm: "Are you sure?"}} %>
@@ -24,9 +24,9 @@
 </div>
 <% @comments.each do |comment| %>
   <div class="p-3 d-flex flex-column" style="flex-wrap: wrap;">
-    <p class="d-inline-flex"> <%= comment.body %></p>
-    <p class="d-inline-flex" style="font-size: 13px;">
-      Commented <%= time_ago_in_words(comment.created_at)%> ago ●  
+    <p> <%= comment.body %></p>
+    <p style="font-size: 12.5px;">
+      Commented <%= time_ago_in_words(comment.created_at)%> ago •
       <%= link_to "Delete", post_comment_path(@post.id,comment.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: "text-decoration: none" %>
     </p>
   </div>
