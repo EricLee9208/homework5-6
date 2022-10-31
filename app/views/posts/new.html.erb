@@ -1,0 +1,10 @@
+<div style="margin-top: 10vh">
+  <% if @post.errors.any? %>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li> <%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= render "form" %>
+</div>
