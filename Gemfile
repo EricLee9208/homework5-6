@@ -42,7 +42,7 @@ gem 'mini_racer', platforms: :ruby
 gem 'jquery-rails'
 
 gem 'cowsay', '~> 0.3.0'
-
+gem 'cancancan'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

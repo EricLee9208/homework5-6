@@ -1,0 +1,23 @@
+<div style="margin-top:10vh">
+  <% if @user.errors.any?%>
+    <p><%= @user.errors.full_messages.join(', ')%></p>
+  <%end%>
+  <div>
+    <%= form_with model: @user do |f|%>
+      <div>
+        <%= f.label :first_name%>
+        <%= f.text_field :first_name%>
+      </div>
+      <div>
+        <%= f.label :last_name%>
+        <%= f.text_field :last_name%>
+      </div>
+      <div>
+        <%= f.label :email%>
+        <%= f.text_field :email%>
+      </div>
+      <%= f.submit "Update Profile" %>
+    <%end%>
+  </div>
+  <%=link_to "change password", user_password_path(@user.id)%>
+</div>

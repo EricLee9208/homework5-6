@@ -9,21 +9,43 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <nav class="navbar fixed-top" style= "background-color: #e3f2fd; padding-right:1vw; padding-left:1vw;">
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link"  style="font-size:30px;" href="<%=posts_path%>">Blog On Rails</a>
-        </li>
-      </ul>
-      <ul class="nav">
-        <li class="nav-item">
-          <a style="font-size:20px;" class="nav-link" href="<%=posts_path%>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a style="font-size:20px;" class="nav-link" href="<%=new_post_path%>">New Post</a>
-        </li>
-      </ul>
-    </nav>
+    <div style="margin-bottom: 10vh;">
+      <nav class="navbar fixed-top" style= "background-color: #e3f2fd; padding-right:1vw; padding-left:1vw;">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link"  style="font-size:30px;" href="<%=posts_path%>">Blog On Rails</a>
+          </li>
+        </ul>
+        <ul class="nav">
+          <li class="nav-item">
+            <a style="font-size:20px;" class="nav-link" href="<%=posts_path%>">Home</a>
+          </li>
+          <li class="nav-item">
+            <a style="font-size:20px;" class="nav-link" href="<%=new_post_path%>">New Post</a>
+          </li>
+          <%if user_signed_in?%>
+            <li class="nav-item">
+              <%= link_to current_user.full_name, edit_user_path(current_user.id), method: :get, class: "btn btn-outline-primary" %>
+            </li>
+            <li class="nav-item">
+              <%= button_to "Sign Out", session_path, method: :delete, class: "btn btn-primary"%>
+            </li>
+          <%else%>
+            <li class="nav-item">
+              <a style="font-size:20px;" class="nav-link" href="<%=new_session_path%>">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a style="font-size:20px;" class="nav-link" href="<%=new_user_path%>">Sign Up</a>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <% flash.each do |type, message| %>
+      <div class="alert alert-info" role=alert >
+        <%= type + "-------" + message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

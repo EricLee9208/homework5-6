@@ -11,6 +11,13 @@ Comment.destroy_all
 User.destroy_all
 
 PASSWORD = "123"
+admin = User.create(
+    first_name: "Admin",
+    last_name: "Account",
+    email: "admin@account.ca",
+    password: "123",
+    admin?: true
+)
 
 10.times do
     first_name = Faker::Name.first_name
@@ -20,6 +27,7 @@ PASSWORD = "123"
     last_name: last_name,
     email: "#{first_name}@#{last_name}.com",
     password: PASSWORD,
+    admin?: false
     )
 end
 

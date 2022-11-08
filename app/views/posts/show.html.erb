@@ -2,8 +2,10 @@
 <p class = "p-3"><%=@post.body%></p>
 <small class="p-3" style="font-size:12.5px">Created <%= time_ago_in_words(@post.created_at)%> ago by: <%=@post.user.full_name%></small>
 <div class="d-flex p-3">
-  <%= button_to 'Edit', edit_post_path(@post), method: :get, class: "btn btn-outline-primary", style: "margin-right:5px;" %>
-  <%= button_to 'Delete', post_path(@post), method: :delete, class: "btn btn-outline-primary", form: {data: {turbo_confirm: "Are you sure?"}} %>
+  <%if can? :crud, @post%>
+    <%= button_to 'Edit', edit_post_path(@post), method: :get, class: "btn btn-outline-primary", style: "margin-right:5px;" %>
+    <%= button_to 'Delete', post_path(@post), method: :delete, class: "btn btn-outline-primary", form: {data: {turbo_confirm: "Are you sure?"}} %>
+  <%end%>
 </div>
 <% if @comment.errors.any? %>
   <ul>
@@ -26,8 +28,9 @@
   <div class="p-3 d-flex flex-column" style="flex-wrap: wrap;">
     <p> <%= comment.body %></p>
     <p style="font-size: 12.5px;">
-      Commented <%= time_ago_in_words(comment.created_at)%> ago by: <%=comment.user.full_name%> •
-      <%= link_to "Delete", post_comment_path(@post.id,comment.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: "text-decoration: none" %>
+      Commented <%= time_ago_in_words(comment.created_at)%> ago by: <%=comment.user.full_name%>  <%if can? :crud, comment%>•
+        <%= link_to "Delete", post_comment_path(@post.id,comment.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: "text-decoration: none" %>
+      <% end %>
     </p>
   </div>
 <% end %>

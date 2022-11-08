@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
     before_action :find_post, only: [:edit, :update, :show, :destroy]
+    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authorize_user!, only: [:edit, :update, :destroy]
 # ============================CREATE=======================================
     def new
         #direct to new page
@@ -9,6 +11,7 @@ class PostsController < ApplicationController
     def create
         #create new post
         @post = Post.new(post_params)
+        @post.user = current_user
         if @post.save
             flash[:success] = "Question successfully created"
             redirect_to @post
@@ -70,5 +73,11 @@ class PostsController < ApplicationController
         params.require(:post).permit(:title, :body)
       end
     
+   
+
+    def authorize_user!
+        redirect_to @post, alert: "Not authorized" unless can?(:crud, @post)
+    
+    end
 
 end
