@@ -1,23 +1,25 @@
-<div style="margin-top:10vh">
+<div style="margin-top:15vh; margin-left: 35vw; text-align:center" >
   <% if @user.errors.any?%>
     <p><%= @user.errors.full_messages.join(', ')%></p>
   <%end%>
-  <div>
+  <div style="width: 30vw;">
     <%= form_with model: @user do |f|%>
-      <div>
-        <%= f.label :first_name%>
-        <%= f.text_field :first_name%>
+      <div class="form-outline mb-4">
+        <%= f.label :first_name, class: "form-label"%>
+        <%= f.text_field :first_name, class: "form-control", style: "text-align: center;"%>
+      </div>
+      <div class="form-outline mb-4">
+        <%= f.label :last_name, class: "form-label"%>
+        <%= f.text_field :last_name, class: "form-control", style: "text-align: center;"%>
+      </div>
+      <div class="form-outline mb-4">
+        <%= f.label :email, class: "form-label"%>
+        <%= f.text_field :email, class: "form-control", style: "text-align: center;"%>
       </div>
       <div>
-        <%= f.label :last_name%>
-        <%= f.text_field :last_name%>
-      </div>
-      <div>
-        <%= f.label :email%>
-        <%= f.text_field :email%>
-      </div>
-      <%= f.submit "Update Profile" %>
-    <%end%>
+        <%= f.submit "Update Profile", class: "btn btn-success" %>
+      <%end%>
+    </div>
+    <%=link_to "change password", user_password_path(@user.id), class: "btn btn-warning", style:"margin-top:1vh"%>
   </div>
-  <%=link_to "change password", user_password_path(@user.id)%>
 </div>

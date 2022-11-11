@@ -35,12 +35,7 @@ class UsersController < ApplicationController
    @current_password = params[:user][:current_password]
    @new_password  = params[:user][:password]
    @password_confirmation  = params[:user][:password_confirmation]
-   puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-   puts @current_password
-   puts @new_password
-   puts @new_password_confirmation
-
-   
+  
    if @current_password 
     
       if @user && @user.authenticate(@current_password)
@@ -52,6 +47,7 @@ class UsersController < ApplicationController
                flash[:success] = "User successfully updated"
                redirect_to root_path
             else
+              flash[:alert] = "New password can not be the same as the current password"
               render :password, {alert: "Please eneter new Password", status: 303}
             end
          
