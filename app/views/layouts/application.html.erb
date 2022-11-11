@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
+    <nav class="navbar fixed-top" style= "background-color: #e3f2fd; padding-right:1vw; padding-left:1vw;">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link"  style="font-size:30px;" href="<%=posts_path%>">Blog On Rails</a>
+        </li>
+      </ul>
+      <ul class="nav">
+        <li class="nav-item">
+          <a style="font-size:20px;" class="nav-link" href="<%=posts_path%>">Home</a>
+        </li>
+        <li class="nav-item">
+          <a style="font-size:20px;" class="nav-link" href="<%=new_post_path%>">New Post</a>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
