@@ -25,10 +25,10 @@
           </li>
           <%if user_signed_in?%>
             <li class="nav-item">
-              <%= link_to current_user.full_name, edit_user_path(current_user.id), method: :get, class: "btn btn-outline-primary" %>
+              <%= link_to current_user.full_name, edit_user_path(current_user.id), method: :get, class: "btn btn-outline-primary", style: "margin-right:1vw; font-size:20px;" %>
             </li>
             <li class="nav-item">
-              <%= button_to "Sign Out", session_path, method: :delete, class: "btn btn-primary"%>
+              <%= button_to "Sign Out", session_path, method: :delete, class: "btn btn-primary", style: "font-size:20px;"%>
             </li>
           <%else%>
             <li class="nav-item">
